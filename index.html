@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+    <title>Firebase Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .container{
+            height: auto;
+        }
+        .row{
+            margin-bottom: 5px;
+        }
+
+        .image-container{
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .title{
+            padding: 10px;
+            height: 20vh;
+        }
+
+        .center{
+            margin: auto;
+            text-align: center;
+            line-height: 20vh;
+            height: 20vh;
+
+        }
+
+        img{
+            position: absolute;
+            right: 0;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto auto;
+        }
+
+        hr{
+            width: 70%;
+            margin: 30px auto 30px auto;
+        }
+
+        
+    </style>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+
+<body>
+    <script type="text/javscript">
+        var hitIndex = 0;
+    </script>
+    <div class="container-fluid">
+        <div class="container title">
+            <div class="row title-content justify-content-center mx-auto">
+                <div class="col-3">
+                    <div class="image-container float-left">
+                        <img src="img/merkle.png" alt="merkle logo" width="110px" style="padding-top: 30px;">
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <h3 class="center">Firebase Snippet Generator</h3>
+                </div>
+                <div class="col-3">
+                    <div class="image-container float-right">
+                        <img src="img/firebase.png" alt="firebase logo" width="100px" style="padding-top: 10px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- FORM 1: Document Title -->
+        <div class="container col-8 justify-content-center body">
+            <div class="row">
+                <h2 class="justify-content-center">App Details</h2>
+            </div>
+            <form action="">
+                <div class="form-group row">
+                    <div class="col-3 col-md-offset-3">
+                        <label for="documentTitle">Document Title</label>
+                    </div>
+                    <div class="col-4">
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Document Title">
+                    </div>            
+                </div>               
+            </form>
+
+            <!-- FORM 2: Language select -->           
+            <div class="form-group row">
+                <div class="col-3 col-md-offset-3">
+                    <label for="exampleFormControlSelect1">Select Language</label>
+                </div>
+                <div class="col-4">
+                    <select class="form-control" id="language">
+                        <option value="java" data-icon="java">Android  |  Java</option>
+                        <option value="kotlin" data-icon="kotlin">Android  |  Kotlin</option>
+                        <option value="objective-c" data-icon="objective-c">iOS  |  Objective-C</option>
+                        <option value="swift" data-icon="swift">iOS  |  Swift</option>
+                    </select>
+                </div>
+ 
+            </div>
+
+            <hr>
+
+            <div id='hits'>
+                <section id='document-hit' hit='0'>
+                    <div id='hit-temp'>
+                        <div class="row">
+                            <h2 class="col-4">Hit Type</h2>
+                        </div>
+                        <form id='hit'>
+                            <div class="row">
+                                <div class="col-2 col-md-offset-3">
+                                    <p>Select Hit Type</p>
+                                </div>
+                                <div class="col-4">
+                                    <select class='form-control' name='hit type' id="ht-input">
+                                        <option value="userId">User ID</option>
+                                        <option value="userProperty">User Property</option>
+                                        <option value="screenName">Screen Name</option>
+                                        <option value="customEvent">Custom Event</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+    
+                        <!-- TEMPLATES -->
+                        <!-- User ID -->
+                        <div class="dyn-form" id="ui">
+                            <div class="row">
+                                <div class="col-2 col-md-offset-3">
+                                    <p>User ID</p>
+                                </div>
+                                <div class="col-4">
+                                    <input class='form-control' type="text" placeholder="Enter User ID" id="ui_name">
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- User Property -->
+                        <div class="dyn-form" id="up">
+                            <div class="row" >
+                                <div class="col-2 col-md-offset-3">
+                                    <p>User Property</p>
+                                </div>
+                                <div class="col-4">
+                                    <input class='form-control' type="text" placeholder="Enter User Property" id="up_name">
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Screen Name -->
+                        <div class="dyn-form" id="sn">
+                            <div class="row">
+                                <div class="col-2 col-md-offset-3">
+                                    <p>Screen Name</p>
+                                </div>
+                                <div class="col-4">
+                                    <input class='form-control' type="text" placeholder="Set Screen Name" id="sn_name">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Custom Event -->
+                        <div class="dyn-form" id="ce">
+                            <div class="row">
+                                <div class="col-2 col-md-offset-3">
+                                    <p>Event Name</p>
+                                </div>
+                                <div class="col-4">
+                                    <input class='form-control' type="text" placeholder="Enter Event Name" id="ce_name">
+                                </div>
+                            </div>
+                            <div id='parameters'>
+                                <!-- Insert Parameters Here -->
+    
+                            </div>
+                            
+                            <div class="col-3 offset-md-3">
+                                <button id='add_p' type="button" class=" btn btn-primary btn-circle">
+                                    <span class="btn-icon">&#43; parameter</span>
+                                </button>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-6 offset-md-3">
+                                <p style="color:red"id="errorHandle"></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>                
+                <hr>    
+                
+                <section  style="margin-bottom: 40px, padding 20px;">
+                    <div class="row" style="margin-bottom: 50px">
+                        <div class="col-8 offset-md-2">
+                            <p style="font-size: 15px;font-family:consolas;"id="snippet"></p>
+                        </div>
+
+                    </div>
+  
+                </p>
+                </section>
+            </div>
+        </div>
+
+        </div>
+
+    </div>
+
+    <!-- Script to make hit type form dynamic -->
+    <script>
+        var formInput = $('#ht-input');
+        $(formInput).change(function() {
+            if($(this).val() === 'userId') {
+                $('#ui').show();
+                $('#up, #sn, #ce').hide();
+            }
+            else if ($(this).val() === 'userProperty'){
+                $('#up').show();
+                $('#ui, #sn, #ce').hide();
+            }
+            else if ($(this).val() === 'screenName'){
+                $('#sn').show();
+                $('#ui, #up, #ce').hide();
+            }
+            else if ($(this).val() === 'customEvent'){
+                $('#ce').show();
+                $('#ui, #up, #sn').hide();
+            }
+            else {return "Invalid Input";
+            }
+        });
+        $(formInput).trigger("change");
+
+    </script>
+
+
+    <!-- <script>
+        function inputChange(target){
+            var val = target.value;
+            console.log('changed to ' + val);
+        }
+    </script> -->
+
+    <script>
+        // Define variables
+        var addParam = $('#add_p'),
+            maxField = 5,
+            paramInsertPos = $('#parameters'),
+            x = 0;
+            paramInsert = '<div class="col-2 col-md-offset-3"><p>Parameter'+ x +'</p></div><div class="col-4"><input class=\'form-control\' type="text" placeholder="Enter Parameter" id="custom_parameter"></div><a href="#" class="remove_field">Remove</a>',
+            
+        
+            // When "+ param" click
+            $(addParam).click(function(e){
+                // error handle
+                e.preventDefault;
+                var errorHandle = $('#errorHandle');
+                
+                if (x >= maxField) {
+                    console.log("Parameter limit reached: " + x);
+                    errorHandle.html('Maximum Parameter limit reached');
+                    addParam.hide();
+                    return x;
+                }
+                else {
+                    if(x < maxField){
+                        x++;
+                        paramInsertPos.append('<div class="row"' + 'parameter=' + x + '>' + paramInsert + '</div>');
+                        errorHandle.empty();
+                        addParam.show();
+                        return x;  
+                    } else {
+                        x++;
+                        paramInsertPos.append('<div class="row"' + 'parameter=' + x + '>' + paramInsert + '</div>');
+                        errorHandle.empty();
+                        addParam.hide();
+                        return x;
+                    }
+
+                }
+            });
+
+            $(paramInsertPos).on("click",".remove_field", function(e){ //user click on remove text
+                var errorHandle = $('#errorHandle');
+                x--;
+                if(x<5){
+                    addParam.show();
+                    errorHandle.empty();
+                } else {
+                    addParam.hide();
+                }
+                e.preventDefault(); 
+                $(this).parent('div').remove();
+
+                return x;
+        });
+    </script>
+
+    <!-- Write form values to snippet -->
+    <script>
+        var win = $(window);
+        win.change(function(){
+            var snippetHTMLPos = $('#snippet'),
+
+                // LANGUAGE VARIABLES
+                language = document.getElementById('language'),
+                languageSelected = language.options[language.selectedIndex].value,
+
+                // HIT TYPE VARIABLES
+                hitTypeSelected = document.getElementById('ht-input').value,
+
+                // USER INPUT - VARIABLES
+                ce_name = document.getElementById('ce_name').value,
+                up_name = document.getElementById('up_name').value,
+                sn_name = document.getElementById('sn_name').value,
+                ui_name = document.getElementById('ui_name').value,
+
+                // USER PROPERTY TEMPLATES
+                up_java = `mFirebaseAnalytics.setUserProperty("{{` + up_name + `}}", ` + up_name + `);`,
+                up_kotlin = `firebaseAnalytics.setUserProperty("{{` + up_name + `}}", ` + up_name + `)`,
+                up_swift = `Analytics.setUserProperty(` + up_name + `, forName: "{{` + up_name + `}}")`
+                up_obc = `[FIRAnalytics setUserPropertyString:` + up_name + ` forName:@"{{` + up_name + `}}"];`,
+
+                // SET SCREEN NAME TEMPLATES
+                sn_java = `mFirebaseAnalytics.setCurrentScreen(this, ` + sn_name + `, null /* class override */);`,
+                sn_kotlin = `firebaseAnalytics.setCurrentScreen(this, ` + sn_name + `, null /* class override */)`,
+                sn_swift = `Analytics.setScreenName(` + sn_name + `, screenClass: screenClass)`,
+                sn_obc = `[FIRAnalytics setScreenName:` + sn_name + `screenClass:screenClass];`,
+
+                // SET USER ID TEMPLATES
+                ui_java = `mFirebaseAnalytics.setUserId("` + ui_name + `");`,
+                ui_kotlin = `mFirebaseAnalytics.setUserId("` + ui_name + `");`,
+                ui_swift = `Analytics.setUserID("` + ui_name + `")`
+                ui_obc = `[FIRAnalytics setUserID:@"` + ui_name + `"]`,
+
+
+
+                ce_java =       'Bundle bundle = new Bundle();<br>mFirebaseAnalytics.logEvent("'+ ce_name +'", params);<br>',
+
+                ce_kotlin =     'val bundle = Bundle()<br>firebaseAnalytics.logEvent("'+ ce_name +'", params)',
+
+                ce_swift =      `Analytics.logEvent("`+ ce_name +`", parameters: [
+                                    "name": name as NSObject,
+                                    "full_text": text as NSObject
+                                ])`,
+
+                ce_obc =        `[FIRAnalytics logEventWithName:@"`+ ce_name +`"
+                                    parameters:@{
+                                        @"name": name,
+                                        @"full_text": text
+                                }];`,
+                
+
+                snippet = "";
+
+                if (languageSelected === 'java'){
+                    if (hitTypeSelected === 'userId'){
+                        snippetHTMLPos.html(ui_java);
+                    } else if (hitTypeSelected === 'screenName'){
+                        snippetHTMLPos.html(sn_java);
+                    } else if (hitTypeSelected === 'userProperty'){
+                        snippetHTMLPos.html(up_java);
+                    } else if (hitTypeSelected === 'customEvent'){
+
+                        var customParameters = $('[id=custom_parameter]');
+                        var parameterInserts = "";
+                        var joinPos = 33;
+                        customParameters.each(function(){
+                            parameterInserts = parameterInserts.concat('', 'params.putString("' + $(this).val() + '", ' + $(this).val() + ');<br>');
+                            var output = [ce_java.slice(0, joinPos), parameterInserts, ce_java.slice(joinPos)].join('');
+                            snippetHTMLPos.html(output);
+                        });   
+                    } else {
+                        console.log('language is Java; undefined hitType.');
+                    }
+                } else if(languageSelected === 'kotlin') {
+                    if (hitTypeSelected === 'userId'){
+                        snippetHTMLPos.text(ui_kotlin);
+                    } else if (hitTypeSelected === 'screenName'){
+                        snippetHTMLPos.text(sn_kotlin);
+                    } else if (hitTypeSelected === 'userProperty'){
+                        snippetHTMLPos.text(up_kotlin);
+                    } else if (hitTypeSelected === 'customEvent'){
+                        var customParameters = $('[id=custom_parameter]'),
+                            parameterInserts = "",
+                            joinPos = 25;
+                        customParameters.each(function(){
+                            parameterInserts = parameterInserts.concat('', 'params.putString("' + $(this).val() + '", ' + $(this).val() + ')<br>');
+                            var output = [ce_kotlin.slice(0, joinPos), parameterInserts, ce_kotlin.slice(joinPos)].join('');
+                            snippetHTMLPos.html(output);
+                        });
+                    } else {
+                        console.log('language is Kotlin; undefined hitType.')
+                    }
+                } else if (languageSelected === 'objective-c'){
+                    if (hitTypeSelected === 'userId'){
+                        snippetHTMLPos.text(ui_obc);
+                    } else if (hitTypeSelected === 'screenName'){
+                        snippetHTMLPos.text(sn_obc);
+                    } else if (hitTypeSelected === 'userProperty'){
+                        snippetHTMLPos.text(up_obc);
+                    } else if (hitTypeSelected === 'customEvent'){
+                        snippetHTMLPos.text(ce_obc);
+                    } else {
+                        console.log('language is Objective-C; undefined hitType.')
+                    }
+                } else if (languageSelected === 'swift'){
+                    if (hitTypeSelected === 'userId'){
+                        snippetHTMLPos.text(ui_swift);
+                    } else if (hitTypeSelected === 'screenName'){
+                        snippetHTMLPos.text(sn_swift);
+                    } else if (hitTypeSelected === 'userProperty'){
+                        snippetHTMLPos.text(up_swift);
+                    } else if (hitTypeSelected === 'customEvent'){
+                        snippetHTMLPos.text(ce_swift);
+                    } else {
+                        console.log('language is Swift; undefined hitType.')
+                    }
+                } else {
+                    console.log('Language is undefined!')
+                }
+                
+            // snippetHTMLPos.text(snippet);
+        });
+            
+
+
+        
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="dist/js/bootstrap-select.js"></script>
+</body>
+</html>
